@@ -1,0 +1,112 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:lab7.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:m="using:lab7.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="lab7.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="lab7">
+	<Window.Styles>
+		<Style Selector="TextBlock.textblock">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="TextAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="Border.border">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+		</Style>
+		<Style Selector="Border.border2">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+		<Style Selector="Button.button">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</Window.Styles>
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+	<Grid RowDefinitions="1.5*,20*,2*,2*">
+
+		<DockPanel Grid.Row="0">
+			<Menu DockPanel.Dock="Top" VerticalAlignment="Top">
+				<MenuItem Header="_File">
+					<MenuItem Name="Save" Header="_Save"/>
+					<MenuItem Name="Load" Header="_Load"/>
+					<MenuItem Name="Exit" Header="_Exit"/>
+				</MenuItem>
+				<MenuItem Name="About" Header="_About">
+				</MenuItem>
+			</Menu>
+		</DockPanel>
+
+		<DataGrid Name="DG" Grid.Row="1" Items="{Binding Items}" CanUserResizeColumns="True">
+			<DataGrid.Columns>
+				<DataGridTextColumn IsReadOnly="True" Header="First Name" Binding="{Binding FirstName}"/>
+				<DataGridTextColumn IsReadOnly="True" Header="Second Name" Binding="{Binding SecondName}"/>
+				<DataGridTextColumn IsReadOnly="True" Header="Patronymic" Binding="{Binding Patronymic}"/>
+				<DataGridTextColumn Header="Control 1" Binding="{Binding [0]}"/>
+				<DataGridTextColumn Header="Control 2" Binding="{Binding [1]}"/>
+				<DataGridTextColumn Header="Control 3" Binding="{Binding [2]}"/>
+				<DataGridTextColumn Header="Control 4" Binding="{Binding [3]}"/>
+				<DataGridTextColumn Header="Control 5" Binding="{Binding [4]}"/>
+				<DataGridTemplateColumn Header="Average" IsReadOnly="True" SortMemberPath="Average" CanUserSort="True">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate DataType="m:Student">
+							<Border Classes="border" Background="{Binding Brush}">
+								<TextBlock Classes="textblock" Text="{Binding Average}"/>
+							</Border>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridCheckBoxColumn Header="Check" Binding="{Binding BoxChecked}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Grid Grid.Row="2" RowDefinitions="*,*" ColumnDefinitions="*,*,*,*,*">
+			<Border Grid.Row="0" Grid.Column="0" Classes="border2">
+				<TextBlock Classes="textblock" Text="Control 1"/>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="0" Classes="border2" Background="{Binding Brush[0]}">
+				<TextBlock Classes="textblock" Text="{Binding [0]}"/>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="1" Classes="border2">
+				<TextBlock Classes="textblock" Text="Control 2"/>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="1" Classes="border2" Background="{Binding Brush[1]}">
+				<TextBlock Classes="textblock" Text="{Binding [1]}"/>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="2" Classes="border2">
+				<TextBlock Classes="textblock" Text="Control 3"/>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="2" Classes="border2" Background="{Binding Brush[2]}">
+				<TextBlock Classes="textblock" Text="{Binding [2]}"/>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="3" Classes="border2">
+				<TextBlock Classes="textblock" Text="Control 4"/>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="3" Classes="border2" Background="{Binding Brush[3]}">
+				<TextBlock Classes="textblock" Text="{Binding [3]}"/>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="4" Classes="border2">
+				<TextBlock Classes="textblock" Text="Control 5"/>
+			</Border>
+			<Border Grid.Row="1" Grid.Column="4" Classes="border2" Background="{Binding Brush[4]}">
+				<TextBlock Classes="textblock" Text="{Binding [4]}"/>
+			</Border>
+		</Grid>
+		<Grid ColumnDefinitions="*,*" Grid.Row="3">
+			<Button Classes="button" Grid.Column="0" Name="AddStudent" Content="Add Student"/>
+			<Button Classes="button" Grid.Column="1" Name="DeleteStudents" Content="Delete Students"/>
+		</Grid>
+	</Grid>
+
+</Window>

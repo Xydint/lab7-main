@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:lab7.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="lab7.Views.AddStudent"
+			 Title="AddStudent">
+	<Window.Styles>
+		<Style Selector="TextBox.textbox">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="TextAlignment" Value="Left"/>
+		</Style>
+		<Style Selector="Button.button">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</Window.Styles>
+	<Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*">
+		<TextBox Classes="textbox" Grid.Row="0" Watermark="Имя" Text="{Binding StudentToReturn.FirstName}"/>
+		<TextBox Classes="textbox" Grid.Row="1" Watermark="Фамилия" Text="{Binding StudentToReturn.SecondName}"/>
+		<TextBox Classes="textbox" Grid.Row="2" Watermark="Отчество" Text="{Binding StudentToReturn.Patronymic}"/>
+		<TextBox Classes="textbox" Grid.Row="3" Watermark="Контроль 1" Text="{Binding StudentToReturn[0]}"/>
+		<TextBox Classes="textbox" Grid.Row="4" Watermark="Контроль 2" Text="{Binding StudentToReturn[1]}"/>
+		<TextBox Classes="textbox" Grid.Row="5" Watermark="Контроль 3" Text="{Binding StudentToReturn[2]}"/>
+		<TextBox Classes="textbox" Grid.Row="6" Watermark="Контроль 4" Text="{Binding StudentToReturn[3]}"/>
+		<TextBox Classes="textbox" Grid.Row="7" Watermark="Контроль 5" Text="{Binding StudentToReturn[4]}"/>
+		<Button Name="OK" Classes="button" Grid.Row="8" Content="OK" IsEnabled="{Binding Enable}"/>
+		<Button Name="Cancel" Classes="button" Grid.Row="9" Content="Cancel"/>
+	</Grid>
+</Window>
